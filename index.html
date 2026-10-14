@@ -3,216 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Legends: Arena Pertempuran</title>
+    <title>KICKOFF INDONESIA - Portal Sepak Bola Dunia</title>
     <style>
-        /* Pengaturan Dasar */
+        /* CSS Reset & Variabel Global */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        :root {
+            --primary: #10b981; /* Hijau Lapangan */
+            --primary-hover: #059669;
+            --accent: #f59e0b; /* Emas/Kuning */
+            --bg-dark: #0f172a; /* Slate Gelap */
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
         }
 
         body {
-            /* Latar belakang menggunakan gambar dengan overlay gelap agar elegan */
-            background: linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.95)), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            /* Latar belakang bertema stadion sepak bola dengan overlay gelap */
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
-            color: #ffffff;
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Navigasi / Header Atas */
+        /* Navigasi */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(15, 23, 42, 0.7);
+            padding: 15px 5%;
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid #d4af37; /* Warna Emas */
+            border-bottom: 3px solid var(--primary);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
-            color: #d4af37;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-            letter-spacing: 2px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Gaya Tombol Umum */
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* Tombol */
         .btn {
-            padding: 10px 25px;
-            background: linear-gradient(45deg, #d4af37, #f3d55b);
-            color: #111;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
-        }
-
-        /* Bagian Banner Utama (Hero Section) */
-        .hero-section {
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px #000;
-        }
-
-        .hero-section h1 span {
-            color: #d4af37;
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Daftar Hero (Grid) */
-        .koleksi-hero {
-            padding: 50px 5%;
-            text-align: center;
-        }
-
-        .koleksi-hero h2 {
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin-bottom: 40px;
-        }
-
-        .grid-hero {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* Kartu Hero */
-        .kartu {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #334155;
-            border-radius: 15px;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .kartu:hover {
-            transform: translateY(-10px);
-            border-color: #d4af37;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .kartu img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 2px solid #334155;
-        }
-
-        .info-kartu {
-            padding: 20px;
-        }
-
-        .info-kartu h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-
-        .info-kartu p {
-            color: #94a3b8;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
         }
 
         .btn-outline {
             background: transparent;
-            color: #d4af37;
-            border: 2px solid #d4af37;
+            border: 2px solid var(--primary);
+            color: var(--primary);
             box-shadow: none;
         }
 
         .btn-outline:hover {
-            background: #d4af37;
-            color: #111;
+            background: var(--primary);
+            color: #fff;
         }
 
-        /* Pop-up Custom (Modal Box) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-box {
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 15px;
+        /* Banner Utama */
+        .hero {
             text-align: center;
-            max-width: 400px;
-            width: 90%;
-            border: 2px solid #d4af37;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            animation: slideUp 0.3s ease;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .modal-box h3 {
-            color: #d4af37;
-            font-size: 1.8rem;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        /* Live Scores Widget */
+        .live-scores {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .score-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .score-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .league {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             margin-bottom: 15px;
         }
 
-        .modal-box p {
-            color: #e2e8f0;
-            margin-bottom: 30px;
-            line-height: 1.5;
+        .team {
+            flex: 1;
+            font-weight: 700;
         }
 
-        .btn-tutup {
-            background: #ef4444;
-            color: white;
+        .score {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+            padding: 0 15px;
+        }
+
+        .status {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Berita / Artikel Grid */
+        .articles {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .article-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .article-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .article-content p {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Modal Pop-up */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 16px;
+            border: 2px solid var(--primary);
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #e2e8f0;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn-close {
+            background-color: #ef4444;
             box-shadow: none;
         }
 
-        .btn-tutup:hover {
-            background: #dc2626;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        .btn-close:hover {
+            background-color: #dc2626;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
         }
 
-        /* Animasi */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
 
-        /* Responsif untuk HP */
+        /* Keyframes */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.2rem; }
-            nav { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 2.2rem; }
+            nav { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
@@ -220,87 +336,129 @@
 
     <!-- Navigasi -->
     <nav>
-        <div class="logo">MLBB ZONE</div>
-        <button class="btn" onclick="bukaModal('Top Up Diamond', 'Sistem Top Up sedang dalam pemeliharaan. Silakan coba kembali dalam 1 jam.')">Top Up / Login</button>
+        <div class="logo">⚽ KICKOFF<span>ID</span></div>
+        <button class="btn" onclick="bukaModal('Berlangganan Newsletter', 'Terima kasih atas ketertarikan Anda! Silakan daftarkan email Anda di newsletter kami untuk mendapatkan berita teraktual langsung dari lapangan.')">Langganan</button>
     </nav>
 
-    <!-- Banner Utama -->
-    <section class="hero-section">
-        <h1>Jadilah Legenda di <span>Land of Dawn</span></h1>
-        <p>Bergabunglah dengan jutaan pemain lainnya dalam pertempuran 5v5 epik. Pilih hero andalanmu, hancurkan markas lawan, dan raih kemenangan!</p>
-        <button class="btn" style="padding: 15px 40px; font-size: 1.2rem;" onclick="bukaModal('Mulai Matchmaking', 'Mencari lawan yang sepadan... Bersiaplah untuk masuk ke arena pertempuran!')">Main Sekarang</button>
+    <!-- Hero / Banner Section -->
+    <header class="hero">
+        <h1>Portal Sepak Bola <span>Terpopuler</span></h1>
+        <p>Akses berita tercepat, hasil skor langsung, jadwal pertandingan terlengkap, serta analisis mendalam dari berbagai liga top seluruh penjuru dunia.</p>
+        <button class="btn" onclick="bukaModal('Menuju Klasemen', 'Fitur klasemen liga-liga dunia sedang diperbarui ke musim terbaru. Silakan kembali beberapa saat lagi.')">Lihat Jadwal & Klasemen</button>
+    </header>
+
+    <!-- Bagian Skor Langsung -->
+    <section class="live-scores">
+        <h2 class="section-title">SKOR HARI INI</h2>
+        <div class="score-grid">
+            
+            <div class="score-card">
+                <div class="league">Premier League</div>
+                <div class="teams">
+                    <span class="team">Man United</span>
+                    <span class="score">2 - 1</span>
+                    <span class="team">Arsenal</span>
+                </div>
+                <div class="status">● Selesai</div>
+            </div>
+
+            <div class="score-card">
+                <div class="league">La Liga</div>
+                <div class="teams">
+                    <span class="team">Barcelona</span>
+                    <span class="score">3 - 2</span>
+                    <span class="team">Real Madrid</span>
+                </div>
+                <div class="status">● Selesai</div>
+            </div>
+
+            <div class="score-card text-center">
+                <div class="league">Liga 1 Indonesia</div>
+                <div class="teams">
+                    <span class="team">Persib</span>
+                    <span class="score" style="color: #64748b;">vs</span>
+                    <span class="team">Persija</span>
+                </div>
+                <div class="status" style="background: rgba(245, 158, 11, 0.1); color: var(--accent);">Malam Ini 19:00</div>
+            </div>
+
+        </div>
     </section>
 
-    <!-- Daftar Hero -->
-    <section class="koleksi-hero">
-        <h2>Hero Pilihan Musim Ini</h2>
-        <div class="grid-hero">
+    <!-- Bagian Berita / Artikel -->
+    <section class="articles">
+        <h2 class="section-title">BERITA TERBARU</h2>
+        <div class="article-grid">
             
-            <!-- Kartu 1 -->
-            <div class="kartu">
-                <!-- Gambar hero menggunakan sumber publik yang aman -->
-                <img src="https://esports.id/img/article/525120201111075647.jpg" alt="Alucard">
-                <div class="info-kartu">
-                    <h3>Alucard</h3>
-                    <p>Fighter / Assassin - Spesialis Lifesteal</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Hero Dipilih: Alucard', 'Kamu telah mengunci Alucard. Jangan lupa gunakan item Lifesteal agar tidak terkalahkan di team fight!')">Pilih Alucard</button>
+            <!-- Berita 1 -->
+            <div class="article-card">
+                <img class="article-img" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1000&auto=format&fit=crop" alt="Piala">
+                <div class="article-content">
+                    <div class="article-meta">Oleh Redaksi • 2 Jam yang lalu</div>
+                    <h3>Pertarungan Sengit Di Puncak Klasemen Liga</h3>
+                    <p>Perebutan posisi teratas liga musim ini semakin memanas setelah tim-tim raksasa kembali meraih hasil positif tanpa kekalahan di pekan ini.</p>
+                    <button class="btn btn-outline" onclick="bukaModal('Pertarungan Sengit Di Puncak Klasemen', 'Artikel lengkap tentang perebutan takhta liga yang kian ketat antara 3 klub raksasa di Eropa kini sedang disiapkan oleh tim jurnalis kami. Nantikan ulasan penuhnya!')">Baca Selengkapnya</button>
                 </div>
             </div>
 
-            <!-- Kartu 2 -->
-            <div class="kartu">
-                <img src="https://gamedaim.com/wp-content/uploads/2021/07/Miya-Mobile-Legends-Gamedaim.jpg" alt="Miya">
-                <div class="info-kartu">
-                    <h3>Miya</h3>
-                    <p>Marksman - Spesialis Serangan Jarak Jauh</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Hero Dipilih: Miya', 'Kamu telah mengunci Miya. Jaga jarak dari Assassin musuh dan jadilah carry di late game!')">Pilih Miya</button>
+            <!-- Berita 2 -->
+            <div class="article-card">
+                <img class="article-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1000&auto=format&fit=crop" alt="Latihan">
+                <div class="article-content">
+                    <div class="article-meta">Oleh Redaksi • 5 Jam yang lalu</div>
+                    <h3>Intensitas Latihan Fisik Jelang Derbi Panas</h3>
+                    <p>Kedua tim rival bebuyutan dilaporkan telah menambah porsi latihan mereka demi mengamankan tiga poin krusial akhir pekan nanti.</p>
+                    <button class="btn btn-outline" onclick="bukaModal('Intensitas Latihan Jelang Derbi', 'Analisis komparatif menu latihan fisik dan strategi taktis dari kedua manajer tim menjelang laga krusial akhir pekan ini. Akses eksklusif ini akan dibuka segera!')">Baca Selengkapnya</button>
                 </div>
             </div>
 
-            <!-- Kartu 3 -->
-            <div class="kartu">
-                <img src="https://dafunda.com/wp-content/uploads/2021/08/Gusion-Mobile-Legends.jpg" alt="Gusion">
-                <div class="info-kartu">
-                    <h3>Gusion</h3>
-                    <p>Assassin / Mage - Burst Damage</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Hero Dipilih: Gusion', 'Kamu telah mengunci Gusion. Pastikan combomu cepat untuk menghabisi musuh dalam sekejap!')">Pilih Gusion</button>
+            <!-- Berita 3 -->
+            <div class="article-card">
+                <img class="article-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000&auto=format&fit=crop" alt="Transfer">
+                <div class="article-content">
+                    <div class="article-meta">Oleh Redaksi • 1 Hari yang lalu</div>
+                    <h3>Bursa Transfer: Pemain Muda Berbakat Jadi Rebutan</h3>
+                    <p>Beberapa klub papan atas bersaing ketat untuk mendapatkan tanda tangan wonderkid yang sedang naik daun di kancah liga nasional.</p>
+                    <button class="btn btn-outline" onclick="bukaModal('Bursa Transfer Pemain Muda', 'Laporan eksklusif rumor transfer, nilai kontrak, serta ambisi pribadi sang wonderkid yang kini tengah didekati oleh empat tim elite Eropa sekaligus.')">Baca Selengkapnya</button>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Pop-up Modal Kustom -->
-    <div class="modal-overlay" id="kotakModal">
-        <div class="modal-box">
-            <h3 id="judulModal">Judul</h3>
-            <p id="pesanModal">Isi pesan ada di sini...</p>
-            <button class="btn btn-tutup" onclick="tutupModal()">Oke, Mengerti</button>
+    <!-- Modal Pop-up Kustom -->
+    <div class="modal" id="popupModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Informasi</h3>
+            <p id="modalMessage">Detail dari berita atau menu akan tampil di sini.</p>
+            <button class="btn btn-close" onclick="tutupModal()">Tutup</button>
         </div>
     </div>
 
-    <!-- Script Fungsi Tombol -->
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 KICKOFF INDONESIA. Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        // Fungsi untuk membuka pop-up
         function bukaModal(judul, pesan) {
-            document.getElementById('judulModal').innerText = judul;
-            document.getElementById('pesanModal').innerText = pesan;
-            document.getElementById('kotakModal').style.display = 'flex';
+            document.getElementById('modalTitle').innerText = judul;
+            document.getElementById('modalMessage').innerText = pesan;
+            document.getElementById('popupModal').style.display = 'flex';
         }
 
-        // Fungsi untuk menutup pop-up
         function tutupModal() {
-            document.getElementById('kotakModal').style.display = 'none';
+            document.getElementById('popupModal').style.display = 'none';
         }
 
-        // Menutup pop-up saat mengklik area gelap di luarnya
+        // Tutup modal jika mengklik sembarang tempat di luar kotak modal
         window.onclick = function(event) {
-            let modal = document.getElementById('kotakModal');
+            let modal = document.getElementById('popupModal');
             if (event.target == modal) {
                 tutupModal();
             }
         }
     </script>
-
 </body>
-</html>
+                      </html>
