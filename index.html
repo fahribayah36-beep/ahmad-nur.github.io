@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesona Alam Indonesia - Keindahan Nusantara</title>
+    <title>Pahlawan Nasional Indonesia - Mengenal Tokoh Sejarah</title>
     <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,9 +13,9 @@
             --bg-color: #f8f9fa;
             --text-color: #333333;
             --card-bg: #ffffff;
-            --primary-color: #2e7d32;
-            --primary-hover: #1b5e20;
-            --accent-color: #4caf50;
+            --primary-color: #8b0000; /* Merah Pahlawan / Perjuangan */
+            --primary-hover: #5c0000;
+            --accent-color: #b22222;
             --nav-bg: #ffffff;
             --shadow: rgba(0, 0, 0, 0.1);
             --border-color: #e0e0e0;
@@ -25,9 +25,9 @@
             --bg-color: #121212;
             --text-color: #e0e0e0;
             --card-bg: #1e1e1e;
-            --primary-color: #81c784;
-            --primary-hover: #a5d6a7;
-            --accent-color: #66bb6a;
+            --primary-color: #ff6b6b;
+            --primary-hover: #ff8787;
+            --accent-color: #fa5252;
             --nav-bg: #1e1e1e;
             --shadow: rgba(0, 0, 0, 0.5);
             --border-color: #333333;
@@ -61,7 +61,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary-color);
             display: flex;
@@ -87,7 +87,7 @@
 
         nav a:hover, nav a.active {
             color: var(--primary-color);
-            background-color: rgba(76, 175, 80, 0.15);
+            background-color: rgba(139, 0, 0, 0.1);
         }
 
         .theme-toggle {
@@ -125,7 +125,7 @@
         .hero {
             text-align: center;
             padding: 4rem 1.5rem;
-            background: linear-gradient(135deg, rgba(27,94,32,0.85), rgba(76,175,80,0.85));
+            background: linear-gradient(135deg, rgba(139,0,0,0.85), rgba(178,34,34,0.85)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
             border-radius: 12px;
             margin-bottom: 2rem;
@@ -194,28 +194,6 @@
             color: var(--text-color);
         }
 
-        .category-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .cat-btn {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
         /* Grid Layout */
         .grid-container {
             display: grid;
@@ -235,14 +213,14 @@
 
         .card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             cursor: pointer;
             transition: transform 0.3s;
         }
 
         .card img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .card-content {
@@ -253,19 +231,19 @@
         }
 
         .card-content h3 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             color: var(--primary-color);
         }
 
         .location-tag {
             font-size: 0.85rem;
-            color: #e65100;
+            color: #d97706;
             margin-bottom: 0.8rem;
             font-weight: 600;
         }
 
         [data-theme="dark"] .location-tag {
-            color: #ffb74d;
+            color: #fbbf24;
         }
 
         .card-content p {
@@ -385,7 +363,7 @@
     <!-- Header & Navigasi -->
     <header>
         <div class="logo">
-            <i class="fa-solid fa-mountain-sun"></i> Pesona Alam
+            <i class="fa-solid fa-landmark"></i> Pahlawan Nasional
         </div>
         <div class="menu-toggle" id="mobile-menu">
             <i class="fa-solid fa-bars"></i>
@@ -393,8 +371,8 @@
         <nav>
             <ul id="nav-list">
                 <li><a class="nav-link active" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Beranda</a></li>
-                <li><a class="nav-link" onclick="switchPage('destinasi', event)"><i class="fa-solid fa-map-location-dot"></i> Destinasi</a></li>
-                <li><a class="nav-link" onclick="switchPage('about', event)"><i class="fa-solid fa-seedling"></i> Tentang Alam</a></li>
+                <li><a class="nav-link" onclick="switchPage('pahlawan', event)"><i class="fa-solid fa-users"></i> Daftar Tokoh</a></li>
+                <li><a class="nav-link" onclick="switchPage('about', event)"><i class="fa-solid fa-book"></i> Tentang Sejarah</a></li>
                 <li><a class="nav-link" onclick="switchPage('artikel', event)"><i class="fa-solid fa-newspaper"></i> Artikel</a></li>
                 <li><a class="nav-link" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Kontak</a></li>
                 <li><button class="theme-toggle" id="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button></li>
@@ -405,142 +383,136 @@
     <!-- Halaman 1: Beranda -->
     <section id="home" class="section-page active">
         <div class="hero">
-            <h1>Jelajahi Keindahan Alam Indonesia</h1>
-            <p>Temukan pesona destinasi wisata alam nusantara yang menakjubkan dan asri.</p>
-            <button class="btn" onclick="switchPage('destinasi', event)">Jelajahi Destinasi</button>
+            <h1>Mengenal Jasa Pahlawan Nasional Indonesia</h1>
+            <p>Teladani semangat juang para pahlawan yang telah mengantarkan kemerdekaan Republik Indonesia.</p>
+            <button class="btn" onclick="switchPage('pahlawan', event)">Lihat Daftar Tokoh</button>
         </div>
-        <h2 style="text-align: center; margin-top: 2rem;">Destinasi Pilihan Utama</h2>
+        <h2 style="text-align: center; margin-top: 2rem;">Tokoh Utama Perjuangan</h2>
         <div class="grid-container" style="margin-top: 1rem;">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo" onclick="openLightbox(this.src)">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Ir. Soekarno" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Gunung Bromo</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Jawa Timur, Indonesia</div>
-                    <p>Gunung berapi aktif dengan panorama sunrise menakjubkan dan lautan pasir berbisik yang ikonik.</p>
-                    <button class="btn" onclick="switchPage('destinasi', event)">Lihat Detail</button>
+                    <h3>Ir. Soekarno</h3>
+                    <div class="location-tag"><i class="fa-solid fa-star"></i> Proklamator & Presiden Pertama</div>
+                    <p>Tokoh utama yang membacakan naskah Proklamasi Kemerdekaan Indonesia dan pencetus Pancasila.</p>
+                    <button class="btn" onclick="switchPage('pahlawan', event)">Lihat Detail</button>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Raja Ampat" onclick="openLightbox(this.src)">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Drs. Moh. Hatta" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Raja Ampat</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Papua Barat, Indonesia</div>
-                    <p>Surga bawah laut dunia dengan pulau karang eksotis dan air laut yang sangat jernih.</p>
-                    <button class="btn" onclick="switchPage('destinasi', event)">Lihat Detail</button>
+                    <h3>Drs. Mohammad Hatta</h3>
+                    <div class="location-tag"><i class="fa-solid fa-star"></i> Proklamator & Wakil Presiden Pertama</div>
+                    <p>Bapak Koperasi Indonesia yang dikenal cerdas, jujur, serta negarawan berintegritas tinggi.</p>
+                    <button class="btn" onclick="switchPage('pahlawan', event)">Lihat Detail</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Halaman 2: Destinasi Wisata -->
-    <section id="destinasi" class="section-page">
-        <h2>Destinasi Wisata Alam Indonesia</h2>
+    <!-- Halaman 2: Daftar Tokoh Pahlawan -->
+    <section id="pahlawan" class="section-page">
+        <h2>5 Tokoh Pahlawan Nasional Indonesia</h2>
         <div class="filter-container">
             <div class="search-box">
                 <i class="fa-solid fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari destinasi atau lokasi..." onkeyup="filterDestinations()">
-            </div>
-            <div class="category-buttons">
-                <button class="cat-btn active" onclick="filterCategory('all', event)">Semua</button>
-                <button class="cat-btn" onclick="filterCategory('gunung', event)">Gunung & Kawah</button>
-                <button class="cat-btn" onclick="filterCategory('bahari', event)">Bahari / Pantai</button>
-                <button class="cat-btn" onclick="filterCategory('danau', event)">Danau & Air Terjun</button>
+                <input type="text" id="searchInput" placeholder="Cari nama pahlawan atau asal daerah..." onkeyup="filterHeroes()">
             </div>
         </div>
-        <div class="grid-container" id="destinasiGrid">
-            <!-- Bromo -->
-            <div class="card" data-category="gunung" data-name="gunung bromo jawa timur">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo" onclick="openLightbox(this.src)">
+        <div class="grid-container" id="pahlawanGrid">
+            <!-- Soekarno -->
+            <div class="card" data-name="ir soekarno blitar jawa timur proklamator">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Ir. Soekarno" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Gunung Bromo</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Jawa Timur, Indonesia</div>
-                    <p>Kawasan pegunungan ikonik dengan kaldera megah, lautan pasir berbisik, dan panorama matahari terbit terbaik.</p>
-                    <button class="btn" onclick="alert('Anda memilih Gunung Bromo!')">Pilih Wisata</button>
+                    <h3>1. Ir. Soekarno</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Blitar, Jawa Timur</div>
+                    <p>Proklamator kemerdekaan RI dan Presiden pertama yang berpidato membakar semangat persatuan bangsa.</p>
+                    <button class="btn" onclick="alert('Anda memilih Ir. Soekarno! Tokoh pemersatu bangsa.')">Teladani Tokoh</button>
                 </div>
             </div>
-            <!-- Raja Ampat -->
-            <div class="card" data-category="bahari" data-name="raja ampat papua barat">
-                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Raja Ampat" onclick="openLightbox(this.src)">
+            <!-- Moh. Hatta -->
+            <div class="card" data-name="mohammad hatta bukittinggi sumatera barat bapak koperasi">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Moh. Hatta" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Raja Ampat</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Papua Barat, Indonesia</div>
-                    <p>Kepulauan eksotis dengan keanekaragaman hayati laut terkaya di bumi, surga bagi penyelam dan pecinta alam.</p>
-                    <button class="btn" onclick="alert('Anda memilih Raja Ampat!')">Pilih Wisata</button>
+                    <h3>2. Drs. Mohammad Hatta</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Bukittinggi, Sumatera Barat</div>
+                    <p>Wakil presiden pertama sekaligus begawan ekonomi yang memperjuangkan kesejahteraan rakyat melalui koperasi.</p>
+                    <button class="btn" onclick="alert('Anda memilih Mohammad Hatta! Bapak Koperasi Indonesia.')">Teladani Tokoh</button>
                 </div>
             </div>
-            <!-- Danau Toba -->
-            <div class="card" data-category="danau" data-name="danau toba sumatera utara">
-                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=800&q=80" alt="Danau Toba" onclick="openLightbox(this.src)">
+            <!-- Pangeran Diponegoro -->
+            <div class="card" data-name="pangeran diponegoro yogyakarta perlawanan belanda">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" alt="Pangeran Diponegoro" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Danau Toba</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Sumatera Utara, Indonesia</div>
-                    <p>Danau vulkanik terbesar di Asia Tenggara dengan Pulau Samosir di tengahnya yang sarat kebudayaan unik.</p>
-                    <button class="btn" onclick="alert('Anda memilih Danau Toba!')">Pilih Wisata</button>
+                    <h3>3. Pangeran Diponegoro</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Yogyakarta</div>
+                    <p>Pemimpin Perang Jawa (1825–1830) yang gigih menentang kolonialisme penjajah Belanda demi harga diri bangsa.</p>
+                    <button class="btn" onclick="alert('Anda memilih Pangeran Diponegoro! Simbol keberanian perlawanan.')">Teladani Tokoh</button>
                 </div>
             </div>
-            <!-- Kawah Ijen -->
-            <div class="card" data-category="gunung" data-name="kawah ijen banyuwangi jawa timur">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Kawah Ijen" onclick="openLightbox(this.src)">
+            <!-- R.A. Kartini -->
+            <div class="card" data-name="ra kartini jepara jawa tengah emansipasi wanita">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="R.A. Kartini" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Kawah Ijen</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Banyuwangi, Jawa Timur</div>
-                    <p>Terkenal dengan fenomena api biru (blue fire) langka serta kawah air asam pirus yang sangat memesona.</p>
-                    <button class="btn" onclick="alert('Anda memilih Kawah Ijen!')">Pilih Wisata</button>
+                    <h3>4. R.A. Kartini</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Jepara, Jawa Tengah</div>
+                    <p>Pelopor kebangkitan perempuan pribumi dan emansipasi wanita agar mendapatkan hak pendidikan yang setara.</p>
+                    <button class="btn" onclick="alert('Anda memilih R.A. Kartini! Pelopor emansipasi wanita.')">Teladani Tokoh</button>
                 </div>
             </div>
-            <!-- Air Terjun Tumpak Sewu -->
-            <div class="card" data-category="danau" data-name="air terjun tumpak sewu lumajang jawa timur">
-                <img src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80" alt="Air Terjun Tumpak Sewu" onclick="openLightbox(this.src)">
+            <!-- Kapitan Pattimura -->
+            <div class="card" data-name="kapitan pattimura maluku thomas matulessy">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80" alt="Kapitan Pattimura" onclick="openLightbox(this.src)">
                 <div class="card-content">
-                    <h3>Air Terjun Tumpak Sewu</h3>
-                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Lumajang, Jawa Timur</div>
-                    <p>Air terjun megah berbentuk tirai raksasa yang dikelilingi tebing hijau subur, sering dijuluki Niagara-nya Indonesia.</p>
-                    <button class="btn" onclick="alert('Anda memilih Air Terjun Tumpak Sewu!')">Pilih Wisata</button>
+                    <h3>5. Kapitan Pattimura</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Saparua, Maluku</div>
+                    <p>Pahlawan nasional yang memimpin rakyat Maluku mengangkat senjata melawan monopoli perdagangan dan penjajahan.</p>
+                    <button class="btn" onclick="alert('Anda memilih Kapitan Pattimura! Pahlawan dari Timur Indonesia.')">Teladani Tokoh</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Halaman 3: Tentang Alam (About) -->
+    <!-- Halaman 3: Tentang Sejarah (About) -->
     <section id="about" class="section-page">
-        <h2>Tentang Alam 🌱</h2>
+        <h2>Tentang Perjuangan & Sejarah 📜</h2>
         <div style="background-color: var(--card-bg); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 4px 8px var(--shadow);">
-            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-leaf"></i> Penjelasan Keindahan Alam</h3>
-            <p style="margin-bottom: 1.5rem;">Alam adalah mahakarya luar biasa yang menyuguhkan harmoni antara flora, fauna, udara bersih, dan bentang daratan serta lautan. Keindahan alam bukan hanya memanjakan mata, tetapi juga memberikan ketenangan jiwa.</p>
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-flag"></i> Arti Penting Pahlawan</h3>
+            <p style="margin-bottom: 1.5rem;">Pahlawan nasional adalah teladan utama dalam menegakkan kedaulatan, persatuan, dan kehormatan bangsa Indonesia dari cengkeraman penjajah.</p>
             
-            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye"></i> Tujuan Pembuatan Website</h3>
-            <p style="margin-bottom: 1.5rem;">Website ini dibuat sebagai sarana edukasi, galeri visual, dan panduan wisata untuk memperkenalkan kekayaan alam Indonesia kepada masyarakat luas.</p>
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye"></i> Tujuan Website</h3>
+            <p style="margin-bottom: 1.5rem;">Website ini dibuat sebagai media edukasi sejarah agar generasi muda senantiasa mengenang jasa serta meneladani nilai-nilai patriotisme para pahlawan.</p>
             
-            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-shield-heart"></i> Pentingnya Menjaga Lingkungan</h3>
-            <p>Menjaga kebersihan dan kelestarian alam adalah tanggung jawab bersama agar ekosistem tetap seimbang dan terhindar dari bencana alam.</p>
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-hand-holding-heart"></i> Menjaga Kemerdekaan</h3>
+            <p>Mengisi kemerdekaan dengan prestasi, kedamaian, dan menjaga keutuhan Negara Kesatuan Republik Indonesia (NKRI) adalah kewajiban kita bersama.</p>
         </div>
     </section>
 
-    <!-- Halaman 4: Artikel Alam -->
+    <!-- Halaman 4: Artikel Sejarah -->
     <section id="artikel" class="section-page">
-        <h2>Artikel Alam 🌤️</h2>
+        <h2>Artikel Kepahlawanan 📰</h2>
         <div class="grid-container">
             <div class="card">
                 <div class="card-content">
-                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Fakta Unik</span>
-                    <h3>Fakta Unik tentang Alam</h3>
-                    <p>Hutan hujan tropis memproduksi sebagian besar oksigen dunia dan menjadi rumah bagi jutaan spesies tumbuhan serta hewan eksotis.</p>
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Sejarah</span>
+                    <h3>Nilai Patriotisme Generasi Muda</h3>
+                    <p>Bagaimana cara menanamkan jiwa nasionalisme dan cinta tanah air di era digital masa kini?</p>
                     <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
                 </div>
             </div>
             <div class="card">
                 <div class="card-content">
-                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Manfaat Hutan</span>
-                    <h3>Manfaat Hutan Bagi Kehidupan</h3>
-                    <p>Hutan berfungsi sebagai paru-paru bumi, pengatur siklus air, penyerapan karbon dioksida, serta pencegah erosi tanah.</p>
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Perjuangan</span>
+                    <h3>Makna Hari Pahlawan 10 November</h3>
+                    <p>Mengenang pertempuran heroik rakyat Surabaya dalam mempertahankan kemerdekaan Indonesia.</p>
                     <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
                 </div>
             </div>
             <div class="card">
                 <div class="card-content">
-                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Kebersihan</span>
-                    <h3>Tips Menjaga Kebersihan Tempat Wisata</h3>
-                    <p>Selalu bawa kantong sampah pribadi, jangan merusak tanaman, serta patuhi peraturan lokal demi kelestarian alam.</p>
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Inspirasi</span>
+                    <h3>Teladan Kejujuran Bung Hatta</h3>
+                    <p>Kisah inspiratif kesederhanaan dan integritas tinggi dari wakil presiden pertama Indonesia.</p>
                     <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
                 </div>
             </div>
@@ -549,7 +521,7 @@
 
     <!-- Halaman 5: Kontak -->
     <section id="contact" class="section-page">
-        <h2>Halaman Kontak 💌</h2>
+        <h2>Halaman Kontak & Pesan 💌</h2>
         <div class="contact-form">
             <form onsubmit="handleContactSubmit(event)">
                 <div class="form-group">
@@ -561,8 +533,8 @@
                     <input type="email" id="email" required placeholder="Masukkan email Anda...">
                 </div>
                 <div class="form-group">
-                    <label for="message">Kritik dan Saran</label>
-                    <textarea id="message" required placeholder="Tuliskan pesan atau saran Anda di sini..."></textarea>
+                    <label for="message">Pesan / Kesan Tokoh Pahlawan</label>
+                    <textarea id="message" required placeholder="Tuliskan pesan Anda di sini..."></textarea>
                 </div>
                 <button type="submit" class="btn" style="width: 100%;">Kirim Pesan</button>
             </form>
@@ -577,7 +549,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Pesona Alam Indonesia. Seluruh Hak Cipta Dilindungi.</p>
+        <p>&copy; 2026 Pahlawan Nasional Indonesia. Jasa Pahlawan Seluruhnya Dikenang Abadi.</p>
     </footer>
 
     <!-- JavaScript Interaktif -->
@@ -607,7 +579,7 @@
             document.getElementById('nav-list').classList.toggle('show');
         });
 
-        // Toggle Mode Gelap / Terang
+        // Mode Gelap & Terang
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.getElementById('theme-btn');
@@ -632,10 +604,10 @@
             document.getElementById('imageModal').style.display = 'none';
         }
 
-        // Pencarian Destinasi
-        function filterDestinations() {
+        // Pencarian Tokoh Pahlawan
+        function filterHeroes() {
             const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('#destinasiGrid .card');
+            const cards = document.querySelectorAll('#pahlawanGrid .card');
 
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
@@ -647,30 +619,11 @@
             });
         }
 
-        // Filter Kategori Destinasi
-        function filterCategory(category, evt) {
-            const buttons = document.querySelectorAll('.cat-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            if (evt && evt.currentTarget) {
-                evt.currentTarget.classList.add('active');
-            }
-
-            const cards = document.querySelectorAll('#destinasiGrid .card');
-            cards.forEach(card => {
-                const cat = card.getAttribute('data-category');
-                if (category === 'all' || cat === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
         // Validasi Form Kontak
         function handleContactSubmit(evt) {
             evt.preventDefault();
             const name = document.getElementById('name').value;
-            alert(`Terima kasih, ${name}! Kritik dan saran Anda berhasil dikirim.`);
+            alert(`Terima kasih, ${name}! Pesan dan kesan Anda mengenai pahlawan telah terkirim.`);
             evt.target.reset();
         }
     </script>
