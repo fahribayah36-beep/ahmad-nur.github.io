@@ -3,461 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KICKOFF INDONESIA - Portal Sepak Bola Dunia</title>
+    <title>Keindahan Alam Indonesia - Prompt Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS Reset & Variabel Global */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        /* Custom styles for animations and details */
+        .copy-feedback {
+            transition: all 0.3s ease-in-out;
         }
-
-        :root {
-            --primary: #10b981; /* Hijau Lapangan */
-            --primary-hover: #059669;
-            --accent: #f59e0b; /* Emas/Kuning */
-            --bg-dark: #0f172a; /* Slate Gelap */
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-light: #f8fafc;
+        .copy-feedback.copied {
+            background-color: #10B981; /* green-500 */
+            color: white;
         }
-
-        body {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Navigasi */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-light);
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        /* Tombol */
-        .btn {
-            padding: 10px 20px;
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        /* Banner Utama */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-bottom: 30px;
-        }
-
-        /* Live Scores Widget */
-        .live-scores {
-            max-width: 1200px;
-            margin: 0 auto 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent);
-        }
-
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .score-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .score-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s;
-        }
-
-        .score-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .league {
-            font-size: 11px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .teams {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .team {
-            flex: 1;
-            font-weight: 700;
-        }
-
-        .score {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-            padding: 0 15px;
-        }
-
-        .status {
-            font-size: 12px;
-            color: var(--primary);
-            font-weight: 700;
-            background: rgba(16, 185, 129, 0.1);
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        /* Berita / Artikel Grid */
-        .articles {
-            max-width: 1200px;
-            margin: 0 auto 80px auto;
-            padding: 0 20px;
-        }
-
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .article-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .article-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-        }
-
-        .article-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .article-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .article-meta {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-bottom: 10px;
-        }
-
-        .article-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #fff;
-            line-height: 1.4;
-        }
-
-        .article-content p {
-            color: #cbd5e1;
-            font-size: 14px;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        /* Modal Pop-up */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeIn 0.25s ease;
-        }
-
-        .modal-content {
-            background: #1e293b;
-            max-width: 500px;
-            width: 100%;
-            border-radius: 16px;
-            border: 2px solid var(--primary);
-            padding: 35px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .modal-content h3 {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        .modal-content p {
-            color: #e2e8f0;
-            font-size: 15px;
-            margin-bottom: 25px;
-        }
-
-        .btn-close {
-            background-color: #ef4444;
-            box-shadow: none;
-        }
-
-        .btn-close:hover {
-            background-color: #dc2626;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 30px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        /* Keyframes */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            nav { flex-direction: column; gap: 15px; text-align: center; }
-        }
+        [v-cloak] { display: none; } /* Prevents content flickering before JS loads */
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <!-- Navigasi -->
-    <nav>
-        <div class="logo">⚽ KICKOFF<span>ID</span></div>
-        <button class="btn" onclick="bukaModal('Berlangganan Newsletter', 'Terima kasih atas ketertarikan Anda! Silakan daftarkan email Anda di newsletter kami untuk mendapatkan berita teraktual langsung dari lapangan.')">Langganan</button>
-    </nav>
-
-    <!-- Hero / Banner Section -->
-    <header class="hero">
-        <h1>Portal Sepak Bola <span>Terpopuler</span></h1>
-        <p>Akses berita tercepat, hasil skor langsung, jadwal pertandingan terlengkap, serta analisis mendalam dari berbagai liga top seluruh penjuru dunia.</p>
-        <button class="btn" onclick="bukaModal('Menuju Klasemen', 'Fitur klasemen liga-liga dunia sedang diperbarui ke musim terbaru. Silakan kembali beberapa saat lagi.')">Lihat Jadwal & Klasemen</button>
+    <!-- Header / Navigasi -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold text-green-700 flex items-center gap-2">
+                <span>🌱</span> Pesona Indonesia
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="#galeri" class="text-gray-600 hover:text-green-700 font-medium">Galeri</a>
+                <button class="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition">Tentang Kami</button>
+            </div>
+        </nav>
     </header>
 
-    <!-- Bagian Skor Langsung -->
-    <section class="live-scores">
-        <h2 class="section-title">SKOR HARI INI</h2>
-        <div class="score-grid">
-            
-            <div class="score-card">
-                <div class="league">Premier League</div>
-                <div class="teams">
-                    <span class="team">Man United</span>
-                    <span class="score">2 - 1</span>
-                    <span class="team">Arsenal</span>
-                </div>
-                <div class="status">● Selesai</div>
+    <!-- Hero Section -->
+    <section class="bg-green-50 py-16 md:py-24">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-950 leading-tight">Jelajahi <span class="text-green-700">Keindahan Alam</span> Indonesia</h1>
+            <p class="mt-6 text-lg text-gray-700 max-w-2xl mx-auto">Dari Sabang hingga Merauke, temukan ribuan pulau, gunung menjulang, pantai eksotis, dan hutan hijau yang menakjubkan. Salah satu tempat terindah di dunia ✨.</p>
+            <div class="mt-10">
+                <a href="#galeri" class="bg-green-600 text-white px-8 py-3.5 rounded-xl font-semibold text-lg hover:bg-green-700 transition shadow-md">Lihat Galeri</a>
             </div>
-
-            <div class="score-card">
-                <div class="league">La Liga</div>
-                <div class="teams">
-                    <span class="team">Barcelona</span>
-                    <span class="score">3 - 2</span>
-                    <span class="team">Real Madrid</span>
-                </div>
-                <div class="status">● Selesai</div>
-            </div>
-
-            <div class="score-card">
-                <div class="league">Liga 1 Indonesia</div>
-                <div class="teams">
-                    <span class="team">Persib</span>
-                    <span class="score" style="color: #64748b;">vs</span>
-                    <span class="team">Persija</span>
-                </div>
-                <div class="status" style="background: rgba(245, 158, 11, 0.1); color: var(--accent);">Malam Ini 19:00</div>
-            </div>
-
         </div>
     </section>
 
-    <!-- Bagian Berita / Artikel -->
-    <section class="articles">
-        <h2 class="section-title">BERITA TERBARU</h2>
-        <div class="article-grid">
-            
-            <!-- Berita 1 -->
-            <div class="article-card">
-                <img class="article-img" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1000&auto=format&fit=crop" alt="Piala">
-                <div class="article-content">
-                    <div class="article-meta">Oleh Redaksi • 2 Jam yang lalu</div>
-                    <h3>Pertarungan Sengit Di Puncak Klasemen Liga</h3>
-                    <p>Perebutan posisi teratas liga musim ini semakin memanas setelah tim-tim raksasa kembali meraih hasil positif tanpa kekalahan di pekan ini.</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Pertarungan Sengit Di Puncak Klasemen', 'Artikel lengkap tentang perebutan takhta liga yang kian ketat antara 3 klub raksasa di Eropa kini sedang disiapkan oleh tim jurnalis kami. Nantikan ulasan penuhnya!')">Baca Selengkapnya</button>
-                </div>
-            </div>
-
-            <!-- Berita 2 -->
-            <div class="article-card">
-                <img class="article-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1000&auto=format&fit=crop" alt="Latihan">
-                <div class="article-content">
-                    <div class="article-meta">Oleh Redaksi • 5 Jam yang lalu</div>
-                    <h3>Intensitas Latihan Fisik Jelang Derbi Panas</h3>
-                    <p>Kedua tim rival bebuyutan dilaporkan telah menambah porsi latihan mereka demi mengamankan tiga poin krusial akhir pekan nanti.</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Intensitas Latihan Jelang Derbi', 'Analisis komparatif menu latihan fisik dan strategi taktis dari kedua manajer tim menjelang laga krusial akhir pekan ini. Akses eksklusif ini akan dibuka segera!')">Baca Selengkapnya</button>
-                </div>
-            </div>
-
-            <!-- Berita 3 -->
-            <div class="article-card">
-                <img class="article-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000&auto=format&fit=crop" alt="Transfer">
-                <div class="article-content">
-                    <div class="article-meta">Oleh Redaksi • 1 Hari yang lalu</div>
-                    <h3>Bursa Transfer: Pemain Muda Berbakat Jadi Rebutan</h3>
-                    <p>Beberapa klub papan atas bersaing ketat untuk mendapatkan tanda tangan wonderkid yang sedang naik daun di kancah liga nasional.</p>
-                    <button class="btn btn-outline" onclick="bukaModal('Bursa Transfer Pemain Muda', 'Laporan eksklusif rumor transfer, nilai kontrak, serta ambisi pribadi sang wonderkid yang kini tengah didekati oleh empat tim elite Eropa sekaligus.')">Baca Selengkapnya</button>
-                </div>
-            </div>
-
+    <!-- Galeri Section -->
+    <main id="galeri" class="container mx-auto px-6 py-16 md:py-24">
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-gray-950">Koleksi Prompt Pemandangan Indah</h2>
+            <p class="mt-4 text-gray-600 max-w-xl mx-auto">Gunakan prompt di bawah ini untuk menghasilkan gambar pemandangan alam Indonesia yang serupa di berbagai AI image generator.</p>
         </div>
-    </section>
 
-    <!-- Modal Pop-up Kustom -->
-    <div class="modal" id="popupModal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Informasi</h3>
-            <p id="modalMessage">Detail dari berita atau menu akan tampil di sini.</p>
-            <button class="btn btn-close" onclick="tutupModal()">Tutup</button>
+        <!-- Grid Galeri -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Card Pemandangan 1 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <!-- Tampilkan Gambar image_1.png di sini -->
+                <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod-images/original_images/watermarked_img_8299976695104449790.jpg" alt="Pemandangan Alam Indonesia" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <span class="inline-block bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider mb-3">Gunung & Sawah</span>
+                    <h3 class="text-xl font-semibold text-gray-950">Sunrise di Lembah Tersembunyi</h3>
+                    <p class="mt-2 text-gray-600 text-sm leading-relaxed">Sunrise keemasan di lembah pegunungan dengan sawah berundak yang hijau dan sungai yang mengalir jernih.</p>
+                    
+                    <div class="mt-6 flex gap-3">
+                        <!-- Tombol Tampilkan Prompt -->
+                        <button onclick="showPromptModal('prompt1')" class="flex-1 text-center bg-gray-100 text-gray-800 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition">Tampilkan Prompt</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anda bisa menambahkan card lain dengan prompt berbeda di sini -->
+            <!-- <div class="bg-white rounded-2xl shadow-lg ..."> ... </div> -->
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; 2026 Pesona Indonesia. Semua Hak Dilindungi.</p>
+            <p class="mt-2 text-xs text-gray-500">Website dibuat dengan ❤️ untuk kelestarian alam.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Prompt (Tersembunyi secara default) -->
+    <div id="promptModal" class="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 transform scale-90 transition-transform duration-300">
+            <div class="flex items-center justify-between mb-6">
+                <h4 class="text-xl font-bold text-gray-950">Copy Image Prompt</h4>
+                <button onclick="closePromptModal()" class="text-gray-500 hover:text-gray-900 text-2xl font-bold">&times;</button>
+            </div>
+            
+            <p class="text-sm text-gray-600 mb-4">Prompt teks untuk menghasilkan gambar ini:</p>
+            
+            <!-- Area Prompt Teks -->
+            <div class="relative bg-gray-100 p-5 rounded-xl border border-gray-200 mb-6">
+                <pre id="promptText" class="text-gray-800 font-mono text-sm whitespace-pre-wrap break-words leading-relaxed"></pre>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="closePromptModal()" class="flex-1 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">Tutup</button>
+                
+                <!-- Tombol Salin Prompt -->
+                <button id="copyButton" onclick="copyPrompt()" class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-green-700 transition copy-feedback">
+                    <span id="copyIcon">📋</span> <span id="copyText">Salin Prompt</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 KICKOFF INDONESIA. Hak Cipta Dilindungi Undang-Undang.</p>
-    </footer>
-
-    <!-- JavaScript -->
+    <!-- JavaScript untuk fungsionalitas -->
     <script>
-        function bukaModal(judul, pesan) {
-            document.getElementById('modalTitle').innerText = judul;
-            document.getElementById('modalMessage').innerText = pesan;
-            document.getElementById('popupModal').style.display = 'flex';
+        // Data prompt yang berbeda untuk setiap card
+        const prompts = {
+            'prompt1': "A breathtaking panoramic photograph of a lush Indonesian mountain valley at sunrise. The steep, rainforested mountains dominate the background, with the first golden-orange sun rays breaking through detailed, textured clouds. Below, the beautifully tiered, stepped green rice paddies (sawah berundak) cascade down the hillsides, perfectly catching the warm light. A clear, rocky mountain river with gentle rapids winds gracefully through the valley, reflecting the hues of the spectacular sunset sky. Diverse tropical trees, including tall palm and teak trees, flank the river and fields. A winding dirt path and a small, rustic wooden bridge over a creek guide the eye. Foreground elements include detailed tropical foliage and colorful wildflowers (yellow, white, purple) on the riverbank. The entire landscape is in razor-sharp focus with rich, natural colors, shot during the golden hour on a clear morning. Natural, cinematic lighting, photorealistic, 8k resolution."
+        };
+
+        const modal = document.getElementById('promptModal');
+        const modalContent = modal.querySelector('.transform');
+        const promptTextBlock = document.getElementById('promptText');
+        const copyButton = document.getElementById('copyButton');
+        const copyTextSpan = document.getElementById('copyText');
+        const copyIconSpan = document.getElementById('copyIcon');
+
+        let currentPromptId = '';
+
+        // Fungsi menampilkan Modal
+        function showPromptModal(promptId) {
+            currentPromptId = promptId;
+            promptTextBlock.textContent = prompts[promptId];
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-90');
+            modalContent.classList.add('scale-100');
+            
+            // Reset state tombol salin
+            copyButton.classList.remove('copied');
+            copyTextSpan.textContent = 'Salin Prompt';
+            copyIconSpan.textContent = '📋';
         }
 
-        function tutupModal() {
-            document.getElementById('popupModal').style.display = 'none';
+        // Fungsi menutup Modal
+        function closePromptModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.add('scale-90');
+            modalContent.classList.remove('scale-100');
         }
 
-        // Tutup modal jika mengklik sembarang tempat di luar kotak modal
-        window.onclick = function(event) {
-            let modal = document.getElementById('popupModal');
-            if (event.target == modal) {
-                tutupModal();
+        // Fungsi menyalin prompt ke Clipboard
+        function copyPrompt() {
+            const textToCopy = promptTextBlock.textContent;
+            
+            // Gunakan Clipboard API
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Umpan balik visual sukses
+                copyButton.classList.add('copied');
+                copyTextSpan.textContent = 'Tersalin!';
+                copyIconSpan.textContent = '✅';
+                
+                // Kembalikan ke keadaan semula setelah 2 detik
+                setTimeout(() => {
+                    copyButton.classList.remove('copied');
+                    copyTextSpan.textContent = 'Salin Prompt';
+                    copyIconSpan.textContent = '📋';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin text: ', err);
+                alert('Gagal menyalin text. Mohon salin secara manual.');
+            });
+        }
+
+        // Tutup modal jika user mengklik di luar kotak modal
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closePromptModal();
             }
-        }
+        });
     </script>
+
 </body>
-                      </html>
+</html>
