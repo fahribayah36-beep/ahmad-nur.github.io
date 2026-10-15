@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Alam Indonesia</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary-color: #2e7d32;
+            --primary-hover: #1b5e20;
+            --accent-color: #81c784;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary-color: #4caf50;
+            --primary-hover: #81c784;
+            --accent-color: #2e7d32;
+            --nav-bg: rgba(18, 18, 18, 0.95);
+            --shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('watermarked_img_10698991543595180230.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 20px 40px 20px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-container input {
+            width: 100%;
+            max-width: 450px;
+            padding: 12px 20px;
+            border-radius: 30px 0 0 30px;
+            border: 1px solid #ccc;
+            outline: none;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            padding: 12px 25px;
+            border-radius: 0 30px 30px 0;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-container button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Destinasi Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .card img:hover {
+            opacity: 0.9;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content .location {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* About & Articles Layout */
+        .about-content, .article-content {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            line-height: 1.8;
+        }
+
+        .about-content p, .article-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        /* Modal / Lightbox for Image Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #bbb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                box-shadow: var(--shadow);
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header & Navigasi -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-leaf"></i> AlamKu
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#destinasi">Destinasi</a></li>
+                <li><a href="#about">Tentang Alam</a></li>
+                <li><a href="#artikel">Artikel</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Ganti Mode">
+                        <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Jelajahi Keindahan Alam Indonesia</h1>
+        <p>Temukan keajaiban alam nusantara mulai dari pegunungan megah hingga lautan jernih yang memukau.</p>
+        <a href="#destinasi" class="btn">Mulai Jelajah</a>
+    </section>
+
+    <div class="container">
+
+        <!-- 1-5. Destinasi Wisata Alam -->
+        <section id="destinasi">
+            <h2 class="section-title">Destinasi Wisata Alam</h2>
+            
+            <!-- Fitur Pencarian -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari destinasi atau lokasi..." onkeyup="searchDestination()">
+                <button onclick="searchDestination()"><i class="fa-solid fa-search"></i></button>
+            </div>
+
+            <div class="grid" id="destinasiGrid">
+                
+                <!-- Gunung Bromo -->
+                <div class="card" data-name="gunung bromo jawa timur">
+                    <img src="watermarked_img_10698991543595180230.jpg" alt="Gunung Bromo" onclick="openModal(this.src)">
+                    <div class="card-content">
+                        <h3>Gunung Bromo</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> Jawa Timur, Indonesia</div>
+                        <p>Gunung berapi aktif yang terkenal dengan pemandangan matahari terbit (sunrise) menakjubkan dan lautan pasir vulkanik yang luas.</p>
+                        <button class="btn" onclick="alert('Anda memilih menjelajahi Gunung Bromo!')">Lihat Detail</button>
+                    </div>
+                </div>
+
+                <!-- Raja Ampat -->
+                <div class="card" data-name="raja ampat papua barat">
+                    <img src="watermarked_img_2135842724384628763.jpg" alt="Raja Ampat" onclick="openModal(this.src)">
+                    <div class="card-content">
+                        <h3>Raja Ampat</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> Papua Barat, Indonesia</div>
+                        <p>Surga bawah laut dunia dengan gugusan pulau karang (karst) yang hijau serta keanekaragaman biota laut yang luar biasa.</p>
+                        <button class="btn" onclick="alert('Anda memilih menjelajahi Raja Ampat!')">Lihat Detail</button>
+                    </div>
+                </div>
+
+                <!-- Danau Toba -->
+                <div class="card" data-name="danau toba sumatera utara">
+                    <img src="watermarked_img_5518776504648561705.jpg" alt="Danau Toba" onclick="openModal(this.src)">
+                    <div class="card-content">
+                        <h3>Danau Toba</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> Sumatera Utara, Indonesia</div>
+                        <p>Danau vulkanik terbesar di Asia Tenggara yang di tengah-tengahnya terdapat Pulau Samosir dengan panorama perbukitan yang indah.</p>
+                        <button class="btn" onclick="alert('Anda memilih menjelajahi Danau Toba!')">Lihat Detail</button>
+                    </div>
+                </div>
+
+                <!-- Kawah Ijen -->
+                <div class="card" data-name="kawah ijen banyuwangi jawa timur">
+                    <img src="watermarked_img_4292916059245500373.jpg" alt="Kawah Ijen" onclick="openModal(this.src)">
+                    <div class="card-content">
+                        <h3>Kawah Ijen</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> Banyuwangi, Jawa Timur</div>
+                        <p>Terkenal dengan fenomena langka Blue Fire (api biru) serta danau kawah asam berwarna hijau pirus yang menakjubkan.</p>
+                        <button class="btn" onclick="alert('Anda memilih menjelajahi Kawah Ijen!')">Lihat Detail</button>
+                    </div>
+                </div>
+
+                <!-- Air Terjun Tumpak Sewu -->
+                <div class="card" data-name="air terjun tumpak sewu lumajang jawa timur">
+                    <!-- Menggunakan foto Bromo sebagai cadangan visual jika belum digenerate, atau placeholder alam -->
+                    <img src="watermarked_img_10698991543595180230.jpg" alt="Air Terjun Tumpak Sewu" onclick="openModal(this.src)">
+                    <div class="card-content">
+                        <h3>Air Terjun Tumpak Sewu</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> Lumajang, Jawa Timur</div>
+                        <p>Air terjun megah berbentuk tirai raksasa yang mengalir dari tebing melingkar, sering dijuluki sebagai Niagara-nya Indonesia.</p>
+                        <button class="btn" onclick="alert('Anda memilih menjelajahi Air Terjun Tumpak Sewu!')">Lihat Detail</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Tentang Alam (About) -->
+        <section id="about">
+            <h2 class="section-title">Tentang Alam & Tujuan</h2>
+            <div class="about-content">
+                <p><strong>🌱 Keindahan Alam:</strong> Alam adalah anugerah terbesar yang memberikan keseimbangan kehidupan di bumi. Dari pegunungan tinggi, hutan tropis yang lebat, hingga lautan biru yang luas, semuanya menyimpan kekayaan hayati yang luar biasa.</p>
+                <p><strong>🎯 Tujuan Pembuatan Website:</strong> Website ini dibuat untuk memperkenalkan keindahan destinasi wisata alam Indonesia kepada masyarakat luas, sekaligus menginspirasi pentingnya mencintai dan melestarikan lingkungan.</p>
+                <p><strong>♻️ Pentingnya Menjaga Lingkungan:</strong> Menjaga lingkungan bukan hanya tentang keindahan estetika semata, melainkan memastikan ketersediaan udara bersih, air, dan habitat bagi makhluk hidup di masa depan agar tetap lestari.</p>
+            </div>
+        </section>
+
+        <!-- 5. Artikel Alam -->
+        <section id="artikel">
+            <h2 class="section-title">Artikel & Edukasi Alam</h2>
+            <div class="article-content">
+                <h3>🌤️ Fakta Unik & Manfaat Alam</h3>
+                <p><strong>Fakta Unik:</strong> Tahukah Anda bahwa hutan hujan tropis di Indonesia memegang peranan penting sebagai salah satu paru-paru dunia yang memproduksi oksigen dalam jumlah besar?</p>
+                <p><strong>Manfaat Hutan:</strong> Hutan berfungsi menyerap karbon dioksida, mencegah erosi dan banjir, serta menjadi rumah bagi ribuan flora dan fauna endemik yang dilindungi.</p>
+                <p><strong>Tips Menjaga Kebersihan Tempat Wisata:</strong>
+                    <ul>
+                        <li>Selalu bawa kantong sampah pribadi saat berkunjung ke alam bebas.</li>
+                        <li>Jangan merusak tanaman atau mencabut flora langka di lokasi wisata.</li>
+                        <li>Kurangi penggunaan plastik sekali pakai selama perjalanan.</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+
+        <!-- 6. Halaman Contact -->
+        <section id="contact">
+            <h2 class="section-title">Hubungi Kami (Kritik & Saran)</h2>
+            <div class="contact-form">
+                <form onsubmit="handleContact(event)">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama Anda..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Masukkan email Anda..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesan">Kritik / Saran / Pesan</label>
+                        <textarea id="pesan" placeholder="Tuliskan pesan atau masukan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Kirim Pesan</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal Gambar Zoom (Lightbox) -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pesona Alam Indonesia. Dibuat dengan kecintaan terhadap alam.</p>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        // Toggle Dark / Light Theme
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Toggle Responsive Mobile Menu
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Fitur Pencarian Destinasi
+        function searchDestination() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // Modal Gambar (Zoom Foto Galeri)
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('img01');
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        // Handler Contact Form
+        function handleContact(event) {
+            event.preventDefault();
+            alert('Terima kasih! Kritik dan saran Anda berhasil dikirim.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
