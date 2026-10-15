@@ -3,99 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil 5 Tokoh Pahlawan Nasional Indonesia</title>
+    <title>Profil 5 Pahlawan Nasional Indonesia</title>
     <style>
-        * {
-            box-sizing: border-box;
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #FFD700;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f4f6f9;
-            color: #333;
             line-height: 1.6;
-            padding: 20px;
         }
+
         header {
-            text-align: center;
-            background: linear-gradient(135deg, #b30000, #800000);
+            background: linear-gradient(135deg, var(--primary-color), #500);
             color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 40px 20px;
         }
+
         header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
         }
+
         header p {
+            margin: 0;
             font-size: 1.1rem;
+            color: #ddd;
         }
+
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
-        .card {
+
+        /* Daftar Isi */
+        .toc {
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
-        .card:hover {
-            transform: translateY(-5px);
+
+        .toc h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
-        .card img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            border-bottom: 3px solid #b30000;
+
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
         }
-        .card-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+
+        .toc li {
+            margin-bottom: 8px;
         }
-        .card-content h3 {
-            font-size: 1.4rem;
-            color: #800000;
-            margin-bottom: 10px;
-        }
-        .card-content p {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #b30000;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
+
+        .toc a {
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Card Pahlawan */
+        .hero-card {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-card {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .hero-card img {
+            width: 200px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 3px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-card img {
+                margin-bottom: 0;
+                margin-right: 30px;
+            }
+        }
+
+        .hero-info {
+            flex: 1;
+        }
+
+        .hero-info h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
             border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: background 0.3s ease;
+            margin-top: 15px;
         }
+
         .btn:hover {
-            background-color: #800000;
+            background-color: #a00;
         }
+
         footer {
             text-align: center;
-            margin-top: 40px;
             padding: 20px;
-            color: #777;
+            background: #333;
+            color: white;
+            margin-top: 40px;
             font-size: 0.9rem;
         }
     </style>
@@ -103,71 +158,85 @@
 <body>
 
     <header>
-        <h1>Mengenang Tokoh Pahlawan Nasional Indonesia</h1>
-        <p>Arsitek Kemerdekaan dan Pejuang Bangsa Indonesia</p>
+        <h1>Pahlawan Nasional Indonesia</h1>
+        <p>Mengenang Jasa dan Perjuangan Para Pahlawan Kemerdekaan</p>
     </header>
 
     <div class="container">
-        <!-- Pahlawan 1 -->
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Soekarno_1959.jpg" alt="Ir. Soekarno">
-            <div class="card-content">
-                <h3>Ir. Soekarno</h3>
-                <p>Presiden pertama Republik Indonesia sekaligus Proklamator Kemerdekaan yang menjabat dari tahun 1945 hingga 1967.</p>
-                <button class="btn" onclick="tampilkanInfo('Ir. Soekarno')">Lihat Detail</button>
+        <!-- Kotak Daftar Isi -->
+        <div class="toc" id="daftar-isi">
+            <h2>Daftar Isi</h2>
+            <ul>
+                <li><a href="#soekarno">1. Ir. Soekarno</a></li>
+                <li><a href="#hatta">2. Drs. Mohammad Hatta</a></li>
+                <li><a href="#ki-hajar">3. Ki Hajar Dewantara</a></li>
+                <li><a href="#cut-nyak">4. Cut Nyak Dien</a></li>
+                <li><a href="#diponegoro">5. Pangeran Diponegoro</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. Soekarno -->
+        <div class="hero-card" id="soekarno">
+            <!-- Gunakan URL gambar asli jika di-hosting terpisah, atau tag lokal -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Presiden_Sukarno.jpg" alt="Ir. Soekarno">
+            <div class="hero-info">
+                <h3>1. Ir. Soekarno</h3>
+                <p>Ir. Soekarno adalah Presiden Republik Indonesia yang pertama, sekaligus tokoh yang sangat berperan penting dalam memproklamasikan kemerdekaan Indonesia pada tanggal 17 Agustus 1945 bersama Mohammad Hatta. Beliau juga pencetus dasar negara Pancasila.</p>
+                <button class="btn" onclick="tampilkanInfo('Ir. Soekarno')">Pelajari Soekarno</button>
             </div>
         </div>
 
-        <!-- Pahlawan 2 -->
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Drs._Mohammad_Hatta%2C_10_Orang_Indonesia_Terbesar_Sekarang_%281952%29%2C_p30.jpg" alt="Drs. Mohammad Hatta">
-            <div class="card-content">
-                <h3>Drs. Mohammad Hatta</h3>
-                <p>Wakil presiden pertama Republik Indonesia, Bapak Koperasi Indonesia, dan negarawan ulung yang mendampingi Bung Karno.</p>
-                <button class="btn" onclick="tampilkanInfo('Drs. Mohammad Hatta')">Lihat Detail</button>
+        <!-- 2. Mohammad Hatta -->
+        <div class="hero-card" id="hatta">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Mohammad_Hatta_1950.jpg" alt="Mohammad Hatta">
+            <div class="hero-info">
+                <h3>2. Drs. Mohammad Hatta</h3>
+                <p>Dikenal sebagai Bung Hatta, beliau adalah Wakil Presiden Republik Indonesia yang pertama serta Bapak Koperasi Indonesia. Bersama Soekarno, beliau menandatangani naskah Proklamasi Kemerdekaan Indonesia.</p>
+                <button class="btn" onclick="tampilkanInfo('Drs. Mohammad Hatta')">Pelajari Bung Hatta</button>
             </div>
         </div>
 
-        <!-- Pahlawan 3 -->
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Ki_Hadjar_Dewantara_Mimbar_Umum_18_October_1949_p2.jpg" alt="Ki Hadjar Dewantara">
-            <div class="card-content">
-                <h3>Ki Hadjar Dewantara</h3>
-                <p>Pelopor pendidikan bagi kaum pribumi Indonesia, pendiri lembaga Taman Siswa, dan Bapak Pendidikan Nasional.</p>
-                <button class="btn" onclick="tampilkanInfo('Ki Hadjar Dewantara')">Lihat Detail</button>
+        <!-- 3. Ki Hajar Dewantara -->
+        <div class="hero-card" id="ki-hajar">
+            <img src="https://imgsrv2.voi.id/BFYYOvdi8tQByTZJclH7jJhvgzPe7tfRWQDZobUw4hE/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8xNDAwNy8yMDIwMDkxNTE5MjQtbWFpbi5jcm9wcGVkXzE2MDAxNzI3MDMuanBlZw.jpg" alt="Ki Hajar Dewantara">
+            <div class="hero-info">
+                <h3>3. Ki Hajar Dewantara</h3>
+                <p>Pendiri lembaga perguruan Taman Siswa yang memberikan kesempatan kepada kaum pribumi untuk mendapatkan hak pendidikan. Hari lahirnya diperingati sebagai Hari Pendidikan Nasional (Hardiknas).</p>
+                <button class="btn" onclick="tampilkanInfo('Ki Hajar Dewantara')">Pelajari Ki Hajar Dewantara</button>
             </div>
         </div>
 
-        <!-- Pahlawan 4 -->
-        <div class="card">
-            <img src="https://www.biografiku.com/wp-content/uploads/2011/09/Cut-Nyak-Dhien-_-duniabebaz.com_.jpg" alt="Cut Nyak Dien">
-            <div class="card-content">
-                <h3>Cut Nyak Dien</h3>
-                <p>Pahlawan nasional wanita asal Aceh yang memimpin perlawanan sengit terhadap pasukan kolonial Belanda di wilayah Aceh.</p>
-                <button class="btn" onclick="tampilkanInfo('Cut Nyak Dien')">Lihat Detail</button>
+        <!-- 4. Cut Nyak Dien -->
+        <div class="hero-card" id="cut-nyak">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Cut_Nyak_Dhien_portrait.jpg/500px-Cut_Nyak_Dhien_portrait.jpg" alt="Cut Nyak Dien">
+            <div class="hero-info">
+                <h3>4. Cut Nyak Dien</h3>
+                <p>Pahlawan nasional wanita asal Aceh yang memimpin perlawanan sengit melawan pasukan kolonial Belanda dalam Perang Aceh setelah suaminya gugur di medan perang.</p>
+                <button class="btn" onclick="tampilkanInfo('Cut Nyak Dien')">Pelajari Cut Nyak Dien</button>
             </div>
         </div>
 
-        <!-- Pahlawan 5 -->
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Jenderal_Sudirman.jpg" alt="Jenderal Sudirman">
-            <div class="card-content">
-                <h3>Jenderal Sudirman</h3>
-                <p>Panglima Besar TNI pertama yang memimpin perang gerilya melawan agresi militer Belanda meski dalam keadaan sakit parah.</p>
-                <button class="btn" onclick="tampilkanInfo('Jenderal Sudirman')">Lihat Detail</button>
+        <!-- 5. Pangeran Diponegoro -->
+        <div class="hero-card" id="diponegoro">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Diponegoro.jpg" alt="Pangeran Diponegoro">
+            <div class="hero-info">
+                <h3>5. Pangeran Diponegoro</h3>
+                <p>Pemimpin Perang Diponegoro (1825–1930) yang merupakan salah satu pertempuran terbesar yang dihadapi oleh Belanda di Nusantara, mengobarkan semangat perlawanan rakyat Jawa.</p>
+                <button class="btn" onclick="tampilkanInfo('Pangeran Diponegoro')">Pelajari Pangeran Diponegoro</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Website Pahlawan Nasional Indonesia. Menggunakan Arsip Foto Sejarah Asli.</p>
+        <p>&copy; 2026 Website Sejarah Pahlawan Nasional Indonesia. All rights reserved.</p>
     </footer>
 
     <script>
-        function tampilkanInfo(namaPahlawan) {
-            alert("Anda memilih profil dari: " + namaPahlawan + ". Terima kasih telah mengenang jasa para pahlawan bangsa!");
+        function fungsiInteraktif(namaPahlawan) {
+            alert("Anda mengklik tombol untuk mengenal lebih dekat sosok " + namaPahlawan + "! Terima kasih telah mempelajari sejarah bangsa.");
         }
+        // Alias agar tombol berfungsi dengan nama fungsi di atas
+        window.tampilkanInfo = fungsiInteraktif;
     </script>
-
 </body>
 </html>
