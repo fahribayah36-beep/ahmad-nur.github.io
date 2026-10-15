@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Alam Indonesia - Keindahan Nusantara</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary-color: #2e7d32;
+            --primary-hover: #1b5e20;
+            --accent-color: #4caf50;
+            --nav-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary-color: #81c784;
+            --primary-hover: #a5d6a7;
+            --accent-color: #66bb6a;
+            --nav-bg: #1e1e1e;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+            background-color: rgba(76, 175, 80, 0.15);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Main Content Sections */
+        .section-page {
+            display: none;
+            padding: 2.5rem 5%;
+            min-height: 80vh;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, rgba(27,94,32,0.85), rgba(76,175,80,0.85));
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 15px var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 3px 6px var(--shadow);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Search & Filter Bar */
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cat-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .location-tag {
+            font-size: 0.85rem;
+            color: #e65100;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .location-tag {
+            color: #ffb74d;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Navigation */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg);
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px var(--shadow);
+                text-align: center;
+            }
+            nav ul.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Header & Navigasi -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-mountain-sun"></i> Pesona Alam
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a class="nav-link active" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Beranda</a></li>
+                <li><a class="nav-link" onclick="switchPage('destinasi', event)"><i class="fa-solid fa-map-location-dot"></i> Destinasi</a></li>
+                <li><a class="nav-link" onclick="switchPage('about', event)"><i class="fa-solid fa-seedling"></i> Tentang Alam</a></li>
+                <li><a class="nav-link" onclick="switchPage('artikel', event)"><i class="fa-solid fa-newspaper"></i> Artikel</a></li>
+                <li><a class="nav-link" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Kontak</a></li>
+                <li><button class="theme-toggle" id="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Halaman 1: Beranda -->
+    <section id="home" class="section-page active">
+        <div class="hero">
+            <h1>Jelajahi Keindahan Alam Indonesia</h1>
+            <p>Temukan pesona destinasi wisata alam nusantara yang menakjubkan dan asri.</p>
+            <button class="btn" onclick="switchPage('destinasi', event)">Jelajahi Destinasi</button>
+        </div>
+        <h2 style="text-align: center; margin-top: 2rem;">Destinasi Pilihan Utama</h2>
+        <div class="grid-container" style="margin-top: 1rem;">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Gunung Bromo</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Jawa Timur, Indonesia</div>
+                    <p>Gunung berapi aktif dengan panorama sunrise menakjubkan dan lautan pasir berbisik yang ikonik.</p>
+                    <button class="btn" onclick="switchPage('destinasi', event)">Lihat Detail</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Raja Ampat" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Raja Ampat</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Papua Barat, Indonesia</div>
+                    <p>Surga bawah laut dunia dengan pulau karang eksotis dan air laut yang sangat jernih.</p>
+                    <button class="btn" onclick="switchPage('destinasi', event)">Lihat Detail</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman 2: Destinasi Wisata -->
+    <section id="destinasi" class="section-page">
+        <h2>Destinasi Wisata Alam Indonesia</h2>
+        <div class="filter-container">
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari destinasi atau lokasi..." onkeyup="filterDestinations()">
+            </div>
+            <div class="category-buttons">
+                <button class="cat-btn active" onclick="filterCategory('all', event)">Semua</button>
+                <button class="cat-btn" onclick="filterCategory('gunung', event)">Gunung & Kawah</button>
+                <button class="cat-btn" onclick="filterCategory('bahari', event)">Bahari / Pantai</button>
+                <button class="cat-btn" onclick="filterCategory('danau', event)">Danau & Air Terjun</button>
+            </div>
+        </div>
+        <div class="grid-container" id="destinasiGrid">
+            <!-- Bromo -->
+            <div class="card" data-category="gunung" data-name="gunung bromo jawa timur">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Gunung Bromo</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Jawa Timur, Indonesia</div>
+                    <p>Kawasan pegunungan ikonik dengan kaldera megah, lautan pasir berbisik, dan panorama matahari terbit terbaik.</p>
+                    <button class="btn" onclick="alert('Anda memilih Gunung Bromo!')">Pilih Wisata</button>
+                </div>
+            </div>
+            <!-- Raja Ampat -->
+            <div class="card" data-category="bahari" data-name="raja ampat papua barat">
+                <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Raja Ampat" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Raja Ampat</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Papua Barat, Indonesia</div>
+                    <p>Kepulauan eksotis dengan keanekaragaman hayati laut terkaya di bumi, surga bagi penyelam dan pecinta alam.</p>
+                    <button class="btn" onclick="alert('Anda memilih Raja Ampat!')">Pilih Wisata</button>
+                </div>
+            </div>
+            <!-- Danau Toba -->
+            <div class="card" data-category="danau" data-name="danau toba sumatera utara">
+                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=800&q=80" alt="Danau Toba" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Danau Toba</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Sumatera Utara, Indonesia</div>
+                    <p>Danau vulkanik terbesar di Asia Tenggara dengan Pulau Samosir di tengahnya yang sarat kebudayaan unik.</p>
+                    <button class="btn" onclick="alert('Anda memilih Danau Toba!')">Pilih Wisata</button>
+                </div>
+            </div>
+            <!-- Kawah Ijen -->
+            <div class="card" data-category="gunung" data-name="kawah ijen banyuwangi jawa timur">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Kawah Ijen" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Kawah Ijen</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Banyuwangi, Jawa Timur</div>
+                    <p>Terkenal dengan fenomena api biru (blue fire) langka serta kawah air asam pirus yang sangat memesona.</p>
+                    <button class="btn" onclick="alert('Anda memilih Kawah Ijen!')">Pilih Wisata</button>
+                </div>
+            </div>
+            <!-- Air Terjun Tumpak Sewu -->
+            <div class="card" data-category="danau" data-name="air terjun tumpak sewu lumajang jawa timur">
+                <img src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80" alt="Air Terjun Tumpak Sewu" onclick="openLightbox(this.src)">
+                <div class="card-content">
+                    <h3>Air Terjun Tumpak Sewu</h3>
+                    <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Lumajang, Jawa Timur</div>
+                    <p>Air terjun megah berbentuk tirai raksasa yang dikelilingi tebing hijau subur, sering dijuluki Niagara-nya Indonesia.</p>
+                    <button class="btn" onclick="alert('Anda memilih Air Terjun Tumpak Sewu!')">Pilih Wisata</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman 3: Tentang Alam (About) -->
+    <section id="about" class="section-page">
+        <h2>Tentang Alam 🌱</h2>
+        <div style="background-color: var(--card-bg); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 4px 8px var(--shadow);">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-leaf"></i> Penjelasan Keindahan Alam</h3>
+            <p style="margin-bottom: 1.5rem;">Alam adalah mahakarya luar biasa yang menyuguhkan harmoni antara flora, fauna, udara bersih, dan bentang daratan serta lautan. Keindahan alam bukan hanya memanjakan mata, tetapi juga memberikan ketenangan jiwa.</p>
+            
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye"></i> Tujuan Pembuatan Website</h3>
+            <p style="margin-bottom: 1.5rem;">Website ini dibuat sebagai sarana edukasi, galeri visual, dan panduan wisata untuk memperkenalkan kekayaan alam Indonesia kepada masyarakat luas.</p>
+            
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fa-solid fa-shield-heart"></i> Pentingnya Menjaga Lingkungan</h3>
+            <p>Menjaga kebersihan dan kelestarian alam adalah tanggung jawab bersama agar ekosistem tetap seimbang dan terhindar dari bencana alam.</p>
+        </div>
+    </section>
+
+    <!-- Halaman 4: Artikel Alam -->
+    <section id="artikel" class="section-page">
+        <h2>Artikel Alam 🌤️</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div class="card-content">
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Fakta Unik</span>
+                    <h3>Fakta Unik tentang Alam</h3>
+                    <p>Hutan hujan tropis memproduksi sebagian besar oksigen dunia dan menjadi rumah bagi jutaan spesies tumbuhan serta hewan eksotis.</p>
+                    <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Manfaat Hutan</span>
+                    <h3>Manfaat Hutan Bagi Kehidupan</h3>
+                    <p>Hutan berfungsi sebagai paru-paru bumi, pengatur siklus air, penyerapan karbon dioksida, serta pencegah erosi tanah.</p>
+                    <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="location-tag"><i class="fa-solid fa-tag"></i> Kebersihan</span>
+                    <h3>Tips Menjaga Kebersihan Tempat Wisata</h3>
+                    <p>Selalu bawa kantong sampah pribadi, jangan merusak tanaman, serta patuhi peraturan lokal demi kelestarian alam.</p>
+                    <button class="btn" onclick="alert('Terima kasih telah membaca artikel!')">Baca Selengkapnya</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman 5: Kontak -->
+    <section id="contact" class="section-page">
+        <h2>Halaman Kontak 💌</h2>
+        <div class="contact-form">
+            <form onsubmit="handleContactSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" required placeholder="Masukkan nama Anda...">
+                </div>
+                <div class="form-group">
+                    <label for="email">Alamat Email</label>
+                    <input type="email" id="email" required placeholder="Masukkan email Anda...">
+                </div>
+                <div class="form-group">
+                    <label for="message">Kritik dan Saran</label>
+                    <textarea id="message" required placeholder="Tuliskan pesan atau saran Anda di sini..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal untuk Memperbesar Foto -->
+    <div class="modal" id="imageModal" onclick="closeLightbox()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImg" src="" alt="Perbesar Foto">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pesona Alam Indonesia. Seluruh Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        // Navigasi Antar Halaman
+        function switchPage(pageId, evt) {
+            const pages = document.querySelectorAll('.section-page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+
+            document.getElementById('nav-list').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', () => {
+            document.getElementById('nav-list').classList.toggle('show');
+        });
+
+        // Toggle Mode Gelap / Terang
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+
+        // Lightbox Zoom Gambar
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Pencarian Destinasi
+        function filterDestinations() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('#destinasiGrid .card');
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter Kategori Destinasi
+        function filterCategory(category, evt) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('#destinasiGrid .card');
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                if (category === 'all' || cat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Validasi Form Kontak
+        function handleContactSubmit(evt) {
+            evt.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Terima kasih, ${name}! Kritik dan saran Anda berhasil dikirim.`);
+            evt.target.reset();
+        }
+    </script>
+</body>
+</html>
