@@ -3,155 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil 5 Pahlawan Nasional Indonesia</title>
+    <title>Pahlawan Nasional Indonesia - Ensiklopedia Sejarah</title>
     <style>
         :root {
-            --primary-color: #8B0000;
-            --secondary-color: #FFD700;
-            --bg-color: #f9f9f9;
-            --text-color: #333;
+            --primary: #dc2626; /* Merah Indonesia */
+            --primary-dark: #b91c1c;
+            --secondary: #ffffff;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --gray: #6b7280;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color), #500);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+            padding: 2.5rem 1rem;
             text-align: center;
-            padding: 40px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
         }
 
         header p {
-            margin: 0;
             font-size: 1.1rem;
-            color: #ddd;
+            opacity: 0.9;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        /* Daftar Isi */
-        .toc {
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-container input {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .search-container input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        /* Hero Gallery Grid */
+        .heroes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-card {
             background: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .toc h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .toc ul {
-            margin: 0;
-            padding-left: 20px;
+        .hero-image-container {
+            width: 100%;
+            height: 280px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+            position: relative;
         }
 
-        .toc li {
-            margin-bottom: 8px;
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s;
         }
 
-        .toc a {
-            text-decoration: none;
-            color: var(--primary-color);
+        .hero-card:hover .hero-image-container img {
+            transform: scale(1.05);
+        }
+
+        .hero-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-content h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
             font-weight: 600;
         }
 
-        .toc a:hover {
-            text-decoration: underline;
+        .hero-desc {
+            font-size: 0.955rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        /* Card Pahlawan */
-        .hero-card {
-            background: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            overflow: hidden;
-            text-align: center;
-            padding: 30px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-card {
-                flex-direction: row;
-                text-align: left;
-            }
-        }
-
-        .hero-card img {
-            width: 200px;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 3px solid #ddd;
-            margin-bottom: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-card img {
-                margin-bottom: 0;
-                margin-right: 30px;
-            }
-        }
-
-        .hero-info {
-            flex: 1;
-        }
-
-        .hero-info h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.8rem;
-        }
-
+        /* Buttons */
         .btn {
-            background-color: var(--primary-color);
+            background-color: var(--primary);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.95rem;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
         }
 
         .btn:hover {
-            background-color: #a00;
+            background-color: var(--primary-dark);
+        }
+
+        /* Modal Popup Detail */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .modal-body h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            padding: 0.8rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background-color: #fef2f2;
+        }
+
+        #quiz-result {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+            z-index: 99;
+        }
+
+        #backToTop:hover {
+            background-color: var(--primary-dark);
         }
 
         footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
+            background-color: var(--dark);
             color: white;
-            margin-top: 40px;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -159,84 +322,252 @@
 
     <header>
         <h1>Pahlawan Nasional Indonesia</h1>
-        <p>Mengenang Jasa dan Perjuangan Para Pahlawan Kemerdekaan</p>
+        <p>Mengenang Jasa, Meneladani Semangat Juang Para Tokoh Kemerdekaan</p>
     </header>
 
     <div class="container">
-        <!-- Kotak Daftar Isi -->
-        <div class="toc" id="daftar-isi">
-            <h2>Daftar Isi</h2>
-            <ul>
-                <li><a href="#soekarno">1. Ir. Soekarno</a></li>
-                <li><a href="#hatta">2. Drs. Mohammad Hatta</a></li>
-                <li><a href="#ki-hajar">3. Ki Hajar Dewantara</a></li>
-                <li><a href="#cut-nyak">4. Cut Nyak Dien</a></li>
-                <li><a href="#diponegoro">5. Pangeran Diponegoro</a></li>
-            </ul>
+        <!-- Kolom Pencarian -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Cari nama pahlawan (contoh: Soekarno, Kartini)..." onkeyup="searchHeroes()">
         </div>
 
-        <!-- 1. Soekarno -->
-        <div class="hero-card" id="soekarno">
-            <!-- Gunakan URL gambar asli jika di-hosting terpisah, atau tag lokal -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Presiden_Sukarno.jpg" alt="Ir. Soekarno">
-            <div class="hero-info">
-                <h3>1. Ir. Soekarno</h3>
-                <p>Ir. Soekarno adalah Presiden Republik Indonesia yang pertama, sekaligus tokoh yang sangat berperan penting dalam memproklamasikan kemerdekaan Indonesia pada tanggal 17 Agustus 1945 bersama Mohammad Hatta. Beliau juga pencetus dasar negara Pancasila.</p>
-                <button class="btn" onclick="tampilkanInfo('Ir. Soekarno')">Pelajari Soekarno</button>
+        <h2 class="section-title">Galeri Tokoh Pahlawan</h2>
+        
+        <!-- Grid Pahlawan -->
+        <div class="heroes-grid" id="heroesGrid">
+            
+            <!-- 1. Ir. Soekarno -->
+            <div class="hero-card" data-name="ir soekarno">
+                <div class="hero-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Presiden_Sukarno_%28retouched%29.jpg" alt="Ir. Soekarno">
+                </div>
+                <div class="hero-content">
+                    <h3>Ir. Soekarno</h3>
+                    <div class="hero-subtitle">Proklamator & Presiden Pertama RI</div>
+                    <div class="hero-desc">Bapak Proklamator kemerdekaan Indonesia yang memimpin perjuangan bangsa dan merumuskan dasar negara Pancasila.</div>
+                    <button class="btn" onclick="openModal('modalSoekarno')">Baca Profil Lengkap</button>
+                </div>
             </div>
-        </div>
 
-        <!-- 2. Mohammad Hatta -->
-        <div class="hero-card" id="hatta">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Mohammad_Hatta_1950.jpg" alt="Mohammad Hatta">
-            <div class="hero-info">
-                <h3>2. Drs. Mohammad Hatta</h3>
-                <p>Dikenal sebagai Bung Hatta, beliau adalah Wakil Presiden Republik Indonesia yang pertama serta Bapak Koperasi Indonesia. Bersama Soekarno, beliau menandatangani naskah Proklamasi Kemerdekaan Indonesia.</p>
-                <button class="btn" onclick="tampilkanInfo('Drs. Mohammad Hatta')">Pelajari Bung Hatta</button>
+            <!-- 2. Mohammad Hatta -->
+            <div class="hero-card" data-name="mohammad hatta bung hatta">
+                <div class="hero-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Mohammad_Hatta_1950.jpg" alt="Mohammad Hatta">
+                </div>
+                <div class="hero-content">
+                    <h3>Mohammad Hatta</h3>
+                    <div class="hero-subtitle">Proklamator & Bapak Koperasi Indonesia</div>
+                    <div class="hero-desc">Tokoh pemikir ulung, ekonom handal, dan Bapak Proklamator yang gigih memperjuangkan kedaulatan bangsa lewat jalur diplomasi.</div>
+                    <button class="btn" onclick="openModal('modalHatta')">Baca Profil Lengkap</button>
+                </div>
             </div>
-        </div>
 
-        <!-- 3. Ki Hajar Dewantara -->
-        <div class="hero-card" id="ki-hajar">
-            <img src="https://imgsrv2.voi.id/BFYYOvdi8tQByTZJclH7jJhvgzPe7tfRWQDZobUw4hE/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8xNDAwNy8yMDIwMDkxNTE5MjQtbWFpbi5jcm9wcGVkXzE2MDAxNzI3MDMuanBlZw.jpg" alt="Ki Hajar Dewantara">
-            <div class="hero-info">
-                <h3>3. Ki Hajar Dewantara</h3>
-                <p>Pendiri lembaga perguruan Taman Siswa yang memberikan kesempatan kepada kaum pribumi untuk mendapatkan hak pendidikan. Hari lahirnya diperingati sebagai Hari Pendidikan Nasional (Hardiknas).</p>
-                <button class="btn" onclick="tampilkanInfo('Ki Hajar Dewantara')">Pelajari Ki Hajar Dewantara</button>
+            <!-- 3. R.A. Kartini -->
+            <div class="hero-card" data-name="ra kartini raden ajeng kartini">
+                <div class="hero-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/COLLECTIE_TROPENMUSEUM_Portret_van_Raden_Ajeng_Kartini_TMnr_10018776.jpg" alt="R.A. Kartini">
+                </div>
+                <div class="hero-content">
+                    <h3>R.A. Kartini</h3>
+                    <div class="hero-subtitle">Pelopor Kebangkitan Perempuan Indonesia</div>
+                    <div class="hero-desc">Tokoh emansipasi wanita yang memperjuangkan kesetaraan hak akses pendidikan bagi kaum perempuan pribumi.</div>
+                    <button class="btn" onclick="openModal('modalKartini')">Baca Profil Lengkap</button>
+                </div>
             </div>
-        </div>
 
-        <!-- 4. Cut Nyak Dien -->
-        <div class="hero-card" id="cut-nyak">
-            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Cut_Nyak_Dhien_portrait.jpg/500px-Cut_Nyak_Dhien_portrait.jpg" alt="Cut Nyak Dien">
-            <div class="hero-info">
-                <h3>4. Cut Nyak Dien</h3>
-                <p>Pahlawan nasional wanita asal Aceh yang memimpin perlawanan sengit melawan pasukan kolonial Belanda dalam Perang Aceh setelah suaminya gugur di medan perang.</p>
-                <button class="btn" onclick="tampilkanInfo('Cut Nyak Dien')">Pelajari Cut Nyak Dien</button>
+            <!-- 4. Pangeran Diponegoro -->
+            <div class="hero-card" data-name="pangeran diponegoro">
+                <div class="hero-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Raden_Saleh_-_Diponegoro_arrest.jpg" alt="Pangeran Diponegoro">
+                </div>
+                <div class="hero-content">
+                    <h3>Pangeran Diponegoro</h3>
+                    <div class="hero-subtitle">Pemimpin Perang Jawa (1825–1830)</div>
+                    <div class="hero-desc">Pahlawan besar dari Yogyakarta yang memimpin perlawanan sengit dan taktik gerilya melawan penjajahan kolonial Belanda.</div>
+                    <button class="btn" onclick="openModal('modalDiponegoro')">Baca Profil Lengkap</button>
+                </div>
             </div>
+
+            <!-- 5. Cut Nyak Dien -->
+            <div class="hero-card" data-name="cut nyak dien">
+                <div class="hero-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Cut_Nyak_Dhien_portrait.jpg" alt="Cut Nyak Dien">
+                </div>
+                <div class="hero-content">
+                    <h3>Cut Nyak Dien</h3>
+                    <div class="hero-subtitle">Srikandi Aceh Pahlawan Nasional</div>
+                    <div class="hero-desc">Pejuang wanita asal Aceh yang sangat gigih dan pantang menyerah memimpin perlawanan gerilya melawan agresi militer Belanda.</div>
+                    <button class="btn" onclick="openModal('modalCutNyakDien')">Baca Profil Lengkap</button>
+                </div>
+            </div>
+
         </div>
 
-        <!-- 5. Pangeran Diponegoro -->
-        <div class="hero-card" id="diponegoro">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Diponegoro.jpg" alt="Pangeran Diponegoro">
-            <div class="hero-info">
-                <h3>5. Pangeran Diponegoro</h3>
-                <p>Pemimpin Perang Diponegoro (1825–1930) yang merupakan salah satu pertempuran terbesar yang dihadapi oleh Belanda di Nusantara, mengobarkan semangat perlawanan rakyat Jawa.</p>
-                <button class="btn" onclick="tampilkanInfo('Pangeran Diponegoro')">Pelajari Pangeran Diponegoro</button>
+        <!-- Kuis Singkat Pahlawan -->
+        <div class="quiz-section">
+            <h2 class="section-title" style="border-left-color: var(--primary); margin-bottom: 1rem;">Kuis Singkat Pahlawan</h2>
+            <div class="quiz-question" id="quizQuestion">Siapakah tokoh yang dikenal sebagai Bapak Koperasi Indonesia sekaligus Proklamator?</div>
+            <div class="quiz-options" id="quizOptions">
+                <button class="quiz-option" onclick="checkAnswer(0)">A. Ir. Soekarno</button>
+                <button class="quiz-option" onclick="checkAnswer(1)">B. Mohammad Hatta</button>
+                <button class="quiz-option" onclick="checkAnswer(2)">C. Pangeran Diponegoro</button>
+            </div>
+            <div id="quiz-result"></div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP PROFIL LENGKAP -->
+
+    <!-- Modal Soekarno -->
+    <div id="modalSoekarno" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modalSoekarno')">&times;</span>
+            <div class="modal-body">
+                <h2>Ir. Soekarno</h2>
+                <p><strong>Tempat & Tanggal Lahir:</strong> Surabaya, 6 Juni 1901</p>
+                <p><strong>Peran dalam Proklamasi:</strong> Menyusun teks proklamasi, menandatangani bersama Bung Hatta, dan membacakannya atas nama bangsa Indonesia.</p>
+                <h4 style="margin-top: 1rem;">Sejarah Perjuangan:</h4>
+                <p>Aktif dalam pergerakan nasional sejak masa studi di THS Bandung, mendirikan PNI (Partai Nasional Indonesia), berkali-kali dijebloskan ke penjara dan diasingkan oleh Belanda karena pidato politiknya yang membakar semangat rakyat.</p>
+                <h4 style="margin-top: 1rem;">Jasa Bagi Indonesia:</h4>
+                <ul>
+                    <li>Menggali dan merumuskan Pancasila sebagai dasar negara.</li>
+                    <li>Menyatukan berbagai suku bangsa di bawah panji Negara Kesatuan Republik Indonesia (NKRI).</li>
+                    <li>Membawa nama Indonesia disegani di kancah internasional melalui Konferensi Asia-Afrika.</li>
+                </ul>
             </div>
         </div>
     </div>
 
+    <!-- Modal Hatta -->
+    <div id="modalHatta" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modalHatta')">&times;</span>
+            <div class="modal-body">
+                <h2>Mohammad Hatta</h2>
+                <p><strong>Biodata Singkat:</strong> Lahir di Bukittinggi, Sumatra Barat, 12 Agustus 1902. Dikenal sebagai pemikir ulung dan negarawan berintegritas tinggi.</p>
+                <h4 style="margin-top: 1rem;">Perjuangan Menuju Kemerdekaan:</h4>
+                <p>Aktif di Perhimpunan Indonesia di negeri Belanda, memimpin organisasi politik anti-kolonial, serta dibuang ke Boven Digoel dan Banda Neira.</p>
+                <h4 style="margin-top: 1rem;">Peran sebagai Proklamator & Pemikiran:</h4>
+                <p>Bersama Bung Soekarno merumuskan kemerdekaan. Hatta dikenal sebagai peletak dasar ekonomi kerakyatan dan diangkat sebagai Bapak Koperasi Indonesia.</p>
+                <h4 style="margin-top: 1rem;">Penghargaan & Jasa:</h4>
+                <ul>
+                    <li>Gelar Pahlawan Nasional (1986).</li>
+                    <li>Bintang Republik Indonesia Adipurna.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Kartini -->
+    <div id="modalKartini" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modalKartini')">&times;</span>
+            <div class="modal-body">
+                <h2>R.A. Kartini</h2>
+                <p><strong>Biodata & Keluarga:</strong> Lahir di Jepara, 21 April 1879, dari kalangan bangsawan Jawa (putri Bupati Jepara Raden Mas Adipati Ario Sosroningrat).</p>
+                <h4 style="margin-top: 1rem;">Perjuangan Pendidikan Perempuan:</h4>
+                <p>Mendirikan sekolah bagi kaum perempuan di Jepara agar mereka mendapatkan akses ilmu pengetahuan dan keluar dari keterbelengguан tradisi kolot.</p>
+                <h4 style="margin-top: 1rem;">Kumpulan Pemikiran:</h4>
+                <p>Gagasan dan surat-suratnya kepada sahabat pena di Belanda dibukukan menjadi buku terkenal berjudul <em>"Habis Gelap Terbitlah Terang"</em>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diponegoro -->
+    <div id="modalDiponegoro" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modalDiponegoro')">&times;</span>
+            <div class="modal-body">
+                <h2>Pangeran Diponegoro</h2>
+                <p><strong>Biodata & Asal-usul:</strong> Lahir di Yogyakarta, 11 November 1785. Putra sulung Sultan Hamengkubuwono III.</p>
+                <h4 style="margin-top: 1rem;">Sejarah Perang Diponegoro (1825–1830):</h4>
+                <p>Memimpin pemberontakan terbesar melawan pemerintah kolonial Belanda setelah makam leluhurnya dinodai pembuatan patok jalan oleh Belanda.</p>
+                <h4 style="margin-top: 1rem;">Strategi & Warisan Sejarah:</h4>
+                <p>Menggunakan strategi gerilya efektif yang menguras keuangan kolonial Belanda, hingga akhirnya ditangkap melalui tipu muslihat perundingan damai.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cut Nyak Dien -->
+    <div id="modalCutNyakDien" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modalCutNyakDien')">&times;</span>
+            <div class="modal-body">
+                <h2>Cut Nyak Dien</h2>
+                <p><strong>Biodata & Asal Daerah:</strong> Lahir di Lampadang, Aceh, tahun 1848 dari keluarga bangsawan religius.</p>
+                <h4 style="margin-top: 1rem;">Perjuangan di Aceh:</h4>
+                <p>Setelah suami pertamanya (Teuku Umar) gugur, ia memimpin pasukan gerilya di pedalaman hutan Aceh melawan pasukan kolonial Belanda selama bertahun-tahun dalam kondisi fisik yang mulai renta dan mata rabun.</p>
+                <h4 style="margin-top: 1rem;">Sikap & Teladan:</h4>
+                <p>Menjadi simbol keteguhan hati, keberanian luar biasa, dan semangat pantang menyerah bagi generasi muda Indonesia.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Kembali ke Atas -->
+    <button id="backToTop" onclick="scrollToTop()">↑</button>
+
     <footer>
-        <p>&copy; 2026 Website Sejarah Pahlawan Nasional Indonesia. All rights reserved.</p>
+        <p>&copy; 2026 Ensiklopedia Pahlawan Nasional Indonesia. Dibuat dengan desain responsif Merah Putih.</p>
     </footer>
 
+    <!-- JavaScript Interaktif -->
     <script>
-        function fungsiInteraktif(namaPahlawan) {
-            alert("Anda mengklik tombol untuk mengenal lebih dekat sosok " + namaPahlawan + "! Terima kasih telah mempelajari sejarah bangsa.");
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
         }
-        // Alias agar tombol berfungsi dengan nama fungsi di atas
-        window.tampilkanInfo = fungsiInteraktif;
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Live Search Function
+        function searchHeroes() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('hero-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // Quiz Logic
+        function checkAnswer(selectedIndex) {
+            let resultText = document.getElementById('quiz-result');
+            if (selectedIndex === 1) {
+                resultText.innerHTML = "✅ Benar! Mohammad Hatta adalah Proklamator sekaligus Bapak Koperasi Indonesia.";
+                resultText.style.color = "#16a34a";
+            } else {
+                resultText.innerHTML = "❌ Kurang tepat. Jawaban yang benar adalah Mohammad Hatta.";
+                resultText.style.color = "#dc2626";
+            }
+        }
+
+        // Back to top button logic
+        let backToTopBtn = document.getElementById('backToTop');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "flex";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
     </script>
 </body>
 </html>
